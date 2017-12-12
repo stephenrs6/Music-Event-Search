@@ -1,0 +1,21 @@
+.container {
+    /* height: 600px; */
+    width: 100%;
+}
+.row {
+    height: 600px;
+}
+.carousel {
+    height: 800px;
+}
+
+.carousel>initialized {
+    min-height: 700px;
+    width: 100%;
+    margin-top: -100px;
+  }
+.carousel .carousel-item {
+    width: 500px;
+}
+    
+
