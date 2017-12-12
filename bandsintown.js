@@ -1,4 +1,4 @@
-var artists = ['Pink Floyd', 'Led Zeppelin', 'Weezer'];
+var artist;
 var results = [];
 
 function searchBandsInTown(artist) {
@@ -11,6 +11,7 @@ function searchBandsInTown(artist) {
         }).done(function(response) {
             if(response.upcoming_event_count > 0){
             results.push(response);
+            console.log(results);
             }
         });
         var queryURLevents = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
@@ -22,8 +23,17 @@ function searchBandsInTown(artist) {
         });
     }
 
-artists.forEach(function(i){
-    searchBandsInTown(i);
-});
+// artists.forEach(function(i){
+//     searchBandsInTown(i);
+// });
 
-console.log(results);
+
+
+$('#autocomplete-input').keypress(function (e) {
+    if (e.which == 13) {
+      artist = $('#autocomplete-input').val().trim();
+      $('#autocomplete-input').val('');
+      searchBandsInTown(artist);
+    
+    }
+  });
