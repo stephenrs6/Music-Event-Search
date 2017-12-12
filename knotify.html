@@ -9,8 +9,10 @@
   <title>knotify</title>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
     crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -144,43 +146,44 @@
             <a href="#!">three</a>
         </li>
     </ul>
+
+
     <nav>
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo">Knotify</a>
             <ul class="right hide-on-med-and-down">
-                <li>
-                    <div class="center row">
-                        <div class="col s12 ">
-                            <div class="row" id="topbarsearch">
-                                <div class="input-field col s6 s12">
-                                    <label class="label-icon" for="search">
-                                        <i class="large material-icons prefix">search</i>
-                                    </label>
-                                    <input type="text" id="autocomplete-input" class="label-icon">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="badges.html">Components</a>
-                </li>
                 <!-- Dropdown Trigger -->
                 <li>
                     <a class="dropdown-button" href="#!" data-activates="dropdown1">Filter
                         <i class="material-icons right"></i>
                     </a>
                 </li>
+                <li>
+                    <a href="badges.html">About</a>
+                </li>
             </ul>
         </div>
     </nav>
-
-
+    </br>
+    <div class="container">
+    <nav>
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label for="search">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="bandsintown.js"></script>
+    <script type="text/javascript" src="logic.js"></script>
 </body>
 
 </html>
