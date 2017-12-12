@@ -83,10 +83,10 @@ function searchMusicGraph(input) {
 
 
 
-$('#autocomplete-input').keypress(function (e) {
+$('#search').keypress(function (e) {
     if (e.which == 13) {
-        artist = $('#autocomplete-input').val().trim();
-        $('#autocomplete-input').val('');
+        artist = $('#search').val().trim();
+        $('#search').val('');
         artists.push(artist);
         searchMusicGraph(artist);
         artists.forEach(function (i) {
