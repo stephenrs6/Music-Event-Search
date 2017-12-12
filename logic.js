@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 //BandsinTown API Call and functionality 
 var artist;
-var artists = [artist];
+var artists = [];
 var results = [];
 
 function searchBandsInTown(input) {
@@ -87,7 +87,7 @@ $('#autocomplete-input').keypress(function (e) {
     if (e.which == 13) {
         artist = $('#autocomplete-input').val().trim();
         $('#autocomplete-input').val('');
-        (artist);
+        artists.push(artist);
         searchMusicGraph(artist);
         artists.forEach(function (i) {
             searchBandsInTown(i);
