@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Giphy API</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // !!!CHANGE BELOW TO USER INPUT!!!
+        var band = "frank ocean";
+        var queryURL = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=c8303e90962e3a5ebd5a1f260a69b138&prefix=" + band;
+        var artists = [];
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function (response) {
+            console.log(response.data[0].id);
+            var artistId = response.data[0].id;
+
+            var artistQueryURL = "http://api.musicgraph.com/api/v2/artist/" + artistId + "/similar?api_key=c8303e90962e3a5ebd5a1f260a69b138&limit=10";
+
+            $.ajax({
+                url: artistQueryURL,
+                method: 'GET'
+            }).done(function (response) {
+                console.log(response);
+                for (var i = 0; i < 5; i++) {
+                    artists.push(response.data[i].name)
+                }
+
+                console.log(artists);
+
+            });
+
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
