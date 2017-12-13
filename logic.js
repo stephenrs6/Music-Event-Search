@@ -12,7 +12,11 @@ var artist;
 var artists = [];
 //array to store the events object from BandsInTown API (only if artist has upcoming shows)
 var results = [];
+var filteredResults;
 
+//geocoder variables
+var state;
+var geocoder;
 
 //MUSICGRAPH API
 //Function Declaration for Searching MusicGraph
@@ -39,19 +43,18 @@ function searchMusicGraph(input) {
 
             //Run a for loop to push the results (related artists) to artists array 
 
-            searchBandsInTown(artist);
+            for (var i = 0; i < 5; i++) {
+                artists.push(response.data[i].name);
+            }
 
-                for (var i = 0; i < 5; i++) {
-                    artists.push(response.data[i].name);
-                    
-                    searchBandsInTown(response.data[i].name);
-                }
-        
+            for (var i = 0; i < artists.length; i++){
+                searchBandsInTown(artists[i]);
+            }
+
         });
 
     });
 }
-
 
 //BANDSINTOWN API
 //Function call for searching Bands in Town
@@ -76,37 +79,43 @@ function searchBandsInTown(input) {
             }).done(function (response) {
 
                 //add the events to the results array 
-                results.push(response);
-            
+                for (var a = 0; a < response.length; a++) {
+                    if (response[a].venue.region === state) {
+                        results.push(response[a]);
+                    }
+                }
             });
-
-
         }
     });
-
 }
 
-
-//GOOGLE MAPS API 
-//API Key for Maps Access
-var APIKey = "AIzaSyDtjjfGkVF17NIWDDcDW_uexEjIqA17Am4";
-
-//Geoposition variable
-var pos;
-
-//HTML5 Geolocation Access
+//Use browser geolocation and google reverse geocoding api to get user's state
 if (navigator.geolocation) {
-
-    //GetCurrentPosition Function
     navigator.geolocation.getCurrentPosition(function (position) {
+        reverseGeoCode(position.coords.latitude, position.coords.longitude);
+    });
+} else {
+    console.log("er")
+    // make sure to handle the failure
+}
 
-        //pull the geolocation
-        pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
-
-        console.log(pos);
+function reverseGeoCode(lat, lng) {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({
+        'latLng': latlng
+    }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results) {
+                // place your marker coding 
+                state = results[0].address_components[5].short_name;
+                console.log(state);
+            } else {
+                alert('No results found');
+            }
+        } else {
+            alert('Geocoder failed due to: ' + status);
+        }
     });
 }
 
@@ -128,8 +137,6 @@ $('#search').keypress(function (e) {
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
         console.log(results);
-
-
     }
 });
 
