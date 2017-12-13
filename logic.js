@@ -1,5 +1,4 @@
-
-//From Kevin/John
+//Kevin and John Code for Materialize 
 $(document).ready(function () {
 
     $(".dropdown-button").dropdown("click", function () {
@@ -7,19 +6,28 @@ $(document).ready(function () {
     })
 });
 
-//BandsinTown API Call and functionality 
+
+//BANDSINTOWN API
+//variable to store user's initial search input 
 var artist;
+//array to store the list of searched artist and related artists(pulled from MusicGraph)
 var artists = [];
+//array to store the events object from BandsInTown API (only if artist has upcoming shows)
 var results = [];
 
+//Function call for searching Bands in Town
 function searchBandsInTown(input) {
 
     // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
     var queryURL = "https://rest.bandsintown.com/artists/" + input + "?app_id=codingbootcamp";
+    
+    //ajax call taking the queryURL 
     $.ajax({
         url: queryURL,
         method: "GET"
     }).done(function (response) {
+
+        //Check if there are upcoming shows 
         if (response.upcoming_event_count > 0) {
             var queryURLevents = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
             $.ajax({
@@ -83,10 +91,10 @@ function searchMusicGraph(input) {
 
 
 
-$('#search').keypress(function (e) {
+$('#autocomplete-input').keypress(function (e) {
     if (e.which == 13) {
-        artist = $('#search').val().trim();
-        $('#search').val('');
+        artist = $('#autocomplete-input').val().trim();
+        $('#autocomplete-input').val('');
         artists.push(artist);
         searchMusicGraph(artist);
         artists.forEach(function (i) {
