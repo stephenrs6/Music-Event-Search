@@ -1,6 +1,6 @@
 //Set up Materilaze navbar hover on document ready 
 $(document).ready(function () {
-   
+
     $(".dropdown-button").dropdown("click", function () {
         hover: false;
     })
@@ -38,12 +38,15 @@ function searchMusicGraph(input) {
         }).done(function (response) {
 
             //Run a for loop to push the results (related artists) to artists array 
-            for (var i = 0; i < 5; i++) {
-                artists.push(response.data[i].name)
-            }
 
-            console.log(artists);
+            searchBandsInTown(artist);
 
+                for (var i = 0; i < 5; i++) {
+                    artists.push(response.data[i].name);
+                    
+                    searchBandsInTown(response.data[i].name);
+                }
+        
         });
 
     });
@@ -56,7 +59,7 @@ function searchBandsInTown(input) {
 
     // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
     var queryURL = "https://rest.bandsintown.com/artists/" + input + "?app_id=codingbootcamp";
-    
+
     //ajax call taking the queryURL 
     $.ajax({
         url: queryURL,
@@ -74,7 +77,10 @@ function searchBandsInTown(input) {
 
                 //add the events to the results array 
                 results.push(response);
+            
             });
+
+
         }
     });
 
@@ -86,16 +92,16 @@ function searchBandsInTown(input) {
 var APIKey = "AIzaSyDtjjfGkVF17NIWDDcDW_uexEjIqA17Am4";
 
 //Geoposition variable
-var pos; 
+var pos;
 
 //HTML5 Geolocation Access
 if (navigator.geolocation) {
-    
+
     //GetCurrentPosition Function
     navigator.geolocation.getCurrentPosition(function (position) {
-        
+
         //pull the geolocation
-         pos = {
+        pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
@@ -118,17 +124,21 @@ $('#search').keypress(function (e) {
 
         //Put the initial artist search in the artists array
         artists.push(artist);
-        
+
+
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
 
-        //Loop through each artist in the artists array
-        artists.forEach(function (i) {
-
-            //Find the events for the artists with the BandsInTown Search
-            searchBandsInTown(i);
-        });
         console.log(results);
+
+        
+        //Loop through each artist in the artists array
+        // artists.forEach(function (i) {
+        //     console.log(artists);
+        //     //Find the events for the artists with the BandsInTown Search
+        //     searchBandsInTown(i);
+        // });
+
     }
 });
 
