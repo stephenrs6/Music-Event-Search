@@ -125,19 +125,10 @@ $('#search').keypress(function (e) {
         //Put the initial artist search in the artists array
         artists.push(artist);
 
-
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
-
         console.log(results);
 
-        
-        //Loop through each artist in the artists array
-        // artists.forEach(function (i) {
-        //     console.log(artists);
-        //     //Find the events for the artists with the BandsInTown Search
-        //     searchBandsInTown(i);
-        // });
 
     }
 });
