@@ -104,14 +104,28 @@ if (navigator.geolocation) {
     });
 }
 
-//Pull the value from the 
+//Pull the value from the search input field
+//On keypress "Enter"
 $('#search').keypress(function (e) {
+
+    //If the keypress is "enter"
     if (e.which == 13) {
+        //Pull the value and put it in the artist variable
         artist = $('#search').val().trim();
+
+        //Reset the value of the input field
         $('#search').val('');
+
+        //Put the initial artist search in the artists array
         artists.push(artist);
+        
+        //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
+
+        //Loop through each artist in the artists array
         artists.forEach(function (i) {
+
+            //Find the events for the artists with the BandsInTown Search
             searchBandsInTown(i);
         });
         console.log(results);
