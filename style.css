@@ -28,4 +28,8 @@
     margin-top: -200px;
 }
     
-
+body {
+    height: 1000px;
+    background: black; /* For browsers that do not support gradients */
+    background: linear-gradient(rgb(80, 52, 52), black); /* Standard syntax (must be last) */
+}
