@@ -7,6 +7,7 @@
 }
 .carousel {
     height: 800px;
+    
 }
 
 .carousel>initialized {
@@ -17,6 +18,14 @@
   }
 .carousel .carousel-item {
     width: 500px;
+}
+
+#searchBar {
+    margin-top: 10px;
+}
+
+.card {
+    margin-top: -200px;
 }
     
 
