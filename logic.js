@@ -1,33 +1,32 @@
-// Media query for carousel
-$('.carousel.carousel-slider').carousel({fullWidth: true});
-//Set up Materilaze navbar hover on document ready 
-$(document).ready(function () {
+//variable to store user's initial search input 
+var artist;
+//array to store the list of searched artist and related artists(pulled from MusicGraph)
+var artists = [];
+//array to store the events object from BandsInTown API (only if artist has upcoming shows)
+var results = [];
+var filteredResults;
 
-    
-        $(".dropdown-button").dropdown("click", function () {
-            hover: false;
-        })
-    });
-    
-    //variable to store user's initial search input 
-    var artist;
-    //array to store the list of searched artist and related artists(pulled from MusicGraph)
-    var artists = [];
-    //array to store the events object from BandsInTown API (only if artist has upcoming shows)
-    var results = [];
-    var filteredResults;
-    
-    //geocoder variables
-    var state;
-    var geocoder;
-    
-    //MUSICGRAPH API
-    //Function Declaration for Searching MusicGraph
-    function searchMusicGraph(input) {
-        //QueryURL using user search input as a parameter
-        var queryURL = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=c8303e90962e3a5ebd5a1f260a69b138&prefix=" + input;
-    
-        //ajax call using the user's input
+//geocoder variables
+var state;
+var geocoder;
+
+//MUSICGRAPH API
+//Function Declaration for Searching MusicGraph
+function searchMusicGraph(input) {
+    //QueryURL using user search input as a parameter
+    var queryURL = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=c8303e90962e3a5ebd5a1f260a69b138&prefix=" + input;
+
+    //ajax call using the user's input
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    }).done(function (response) {
+
+        //Get the string provided in the JSON 
+        var artistId = response.data[0].id;
+
+        //Search for the related artists
+        var artistQueryURL = "http://api.musicgraph.com/api/v2/artist/" + artistId + "/similar?api_key=c8303e90962e3a5ebd5a1f260a69b138&limit=10";
 
         $.ajax({
             url: queryURL,
