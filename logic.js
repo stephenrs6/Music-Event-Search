@@ -2,7 +2,7 @@
 $('.carousel.carousel-slider').carousel({fullWidth: true});
 //Set up Materilaze navbar hover on document ready 
 $(document).ready(function () {
-   
+
     $(".dropdown-button").dropdown("click", function () {
         hover: false;
         
@@ -15,7 +15,11 @@ var artist;
 var artists = [];
 //array to store the events object from BandsInTown API (only if artist has upcoming shows)
 var results = [];
+var filteredResults;
 
+//geocoder variables
+var state;
+var geocoder;
 
 //MUSICGRAPH API
 //Function Declaration for Searching MusicGraph
@@ -41,17 +45,19 @@ function searchMusicGraph(input) {
         }).done(function (response) {
 
             //Run a for loop to push the results (related artists) to artists array 
+
             for (var i = 0; i < 5; i++) {
-                artists.push(response.data[i].name)
+                artists.push(response.data[i].name);
             }
 
-            console.log(artists);
+            for (var i = 0; i < artists.length; i++){
+                searchBandsInTown(artists[i]);
+            }
 
         });
 
     });
 }
-
 
 //BANDSINTOWN API
 //Function call for searching Bands in Town
@@ -59,7 +65,7 @@ function searchBandsInTown(input) {
 
     // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
     var queryURL = "https://rest.bandsintown.com/artists/" + input + "?app_id=codingbootcamp";
-    
+
     //ajax call taking the queryURL 
     $.ajax({
         url: queryURL,
@@ -76,35 +82,80 @@ function searchBandsInTown(input) {
             }).done(function (response) {
 
                 //add the events to the results array 
-                results.push(response);
+                for (var a = 0; a < response.length; a++) {
+                    if (response[a].venue.region === state) {
+                        results.push(response[a]);
+                    }
+                }
             });
         }
     });
-
 }
 
-
-//GOOGLE MAPS API 
-//API Key for Maps Access
-var APIKey = "AIzaSyDtjjfGkVF17NIWDDcDW_uexEjIqA17Am4";
-
-//Geoposition variable
-var pos; 
-
-//HTML5 Geolocation Access
+//Use browser geolocation and google reverse geocoding api to get user's state
 if (navigator.geolocation) {
-    
-    //GetCurrentPosition Function
     navigator.geolocation.getCurrentPosition(function (position) {
-        
-        //pull the geolocation
-         pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
-
-        console.log(pos);
+        reverseGeoCode(position.coords.latitude, position.coords.longitude);
     });
+} else {
+    console.log("er")
+    // make sure to handle the failure
+}
+
+function reverseGeoCode(lat, lng) {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({
+        'latLng': latlng
+    }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results) {
+                // place your marker coding 
+                state = results[0].address_components[5].short_name;
+                console.log(state);
+            } else {
+                alert('No results found');
+            }
+        } else {
+            alert('Geocoder failed due to: ' + status);
+        }
+    });
+
+    var map;
+    
+    function initialize() {
+      // Create a map centered in Pyrmont, Sydney (Australia).
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -33.8666, lng: 151.1958},
+        zoom: 15
+      });
+    
+      // Search for Google's office in Australia.
+      var request = {
+        location: map.getCenter(),
+        radius: '500',
+        query: 'Google Sydney'
+      };
+    
+      var service = new google.maps.places.PlacesService(map);
+      service.textSearch(request, callback);
+    }
+    
+    // Checks that the PlacesServiceStatus is OK, and adds a marker
+    // using the place ID and location from the PlacesService.
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        var marker = new google.maps.Marker({
+          map: map,
+          place: {
+            placeId: results[0].place_id,
+            location: results[0].geometry.location
+          }
+        });
+      }
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
 }
 
 //Pull the value from the search input field
@@ -121,16 +172,9 @@ $('#search').keypress(function (e) {
 
         //Put the initial artist search in the artists array
         artists.push(artist);
-        
+
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
-
-        //Loop through each artist in the artists array
-        artists.forEach(function (i) {
-
-            //Find the events for the artists with the BandsInTown Search
-            searchBandsInTown(i);
-        });
         console.log(results);
     }
 });
