@@ -31,8 +31,6 @@
     
 body {
     height: 1000px;
-    /* background: black;  */
-    /* background: linear-gradient(rgb(80, 52, 52), black);  */
     background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/Tron-Logo-Desktop.jpg")
 }
 
@@ -41,33 +39,40 @@ body {
 }
 .brand-logo {
     font-family: 'Stalinist One', cursive;
+    margin-left: 20px;
 }
 .dropdown-button {
-    /* font-family:  */
+    font-family: 'Amaranth', sans-serif;
+    font-size: 24px;
 }
+a[href="badges.html"] { 
+    font-family: 'Amaranth', sans-serif;
+    font-size: 24px; 
+}
+
 
 @media screen and (max-width:1050px){
     .carousel .carousel-item {width: 400px;}
     #searchBar {margin-top: 30px;}
-        
+    .brand-logo {margin-left: 0px;       
 }
 
 @media screen and (max-width:800px){
     .carousel .carousel-item {width: 350px;}
     #searchBar {margin-top: 20px;}
-    
+    .brand-logo {margin-left: 0px;               
 }
 
 @media screen and (max-width: 600px){
     .carousel .carousel-item {width: 250px;}
     #searchBar {margin-top: 20px;}
     #searchBar {width: 100%;}
-    
+    .brand-logo {margin-left: 0px;               
 }
 
 @media screen and (max-width:460px){
     .carousel .carousel-item {width: 200px;}
     #searchBar {margin-top: 10px;}
-    #searchBar {width: 100%;}    
-    
+    #searchBar {width: 100%;}   
+    .brand-logo {margin-left: 0px;               
 }
