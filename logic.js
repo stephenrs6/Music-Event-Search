@@ -1,8 +1,11 @@
+// Media query for carousel
+$('.carousel.carousel-slider').carousel({fullWidth: true});
 //Set up Materilaze navbar hover on document ready 
 $(document).ready(function () {
 
     $(".dropdown-button").dropdown("click", function () {
         hover: false;
+        
     })
 });
 
