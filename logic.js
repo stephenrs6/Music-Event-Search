@@ -10,6 +10,7 @@ var filteredResults;
 var state;
 var geocoder;
 
+
 //MUSICGRAPH API
 //Function Declaration for Searching MusicGraph
 function searchMusicGraph(input) {
@@ -110,6 +111,7 @@ function reverseGeoCode(lat, lng) {
         }
     });
 }
+
 
 //Pull the value from the search input field
 //On keypress "Enter"
