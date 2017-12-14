@@ -21,15 +21,53 @@
 }
 
 #searchBar {
-    margin-top: 10px;
+    margin-top: 50px;
+    width: 50%;
 }
 
 .card {
-    margin-top: -200px;
+    margin-top: -230px;
 }
     
 body {
     height: 1000px;
-    background: black; /* For browsers that do not support gradients */
-    background: linear-gradient(rgb(80, 52, 52), black); /* Standard syntax (must be last) */
+    /* background: black;  */
+    /* background: linear-gradient(rgb(80, 52, 52), black);  */
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/Tron-Logo-Desktop.jpg")
+}
+
+.nav-wrapper {
+    background-color: rgb(73, 147, 165);
+}
+.brand-logo {
+    font-family: 'Stalinist One', cursive;
+}
+.dropdown-button {
+    /* font-family:  */
+}
+
+@media screen and (max-width:1050px){
+    .carousel .carousel-item {width: 400px;}
+    #searchBar {margin-top: 30px;}
+        
+}
+
+@media screen and (max-width:800px){
+    .carousel .carousel-item {width: 350px;}
+    #searchBar {margin-top: 20px;}
+    
+}
+
+@media screen and (max-width: 600px){
+    .carousel .carousel-item {width: 250px;}
+    #searchBar {margin-top: 20px;}
+    #searchBar {width: 100%;}
+    
+}
+
+@media screen and (max-width:460px){
+    .carousel .carousel-item {width: 200px;}
+    #searchBar {margin-top: 10px;}
+    #searchBar {width: 100%;}    
+    
 }
