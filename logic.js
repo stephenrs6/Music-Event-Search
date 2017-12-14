@@ -1,5 +1,8 @@
+// Media query for carousel
+$('.carousel.carousel-slider').carousel({fullWidth: true});
 //Set up Materilaze navbar hover on document ready 
 $(document).ready(function () {
+
     
         $(".dropdown-button").dropdown("click", function () {
             hover: false;
@@ -25,6 +28,7 @@ $(document).ready(function () {
         var queryURL = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=c8303e90962e3a5ebd5a1f260a69b138&prefix=" + input;
     
         //ajax call using the user's input
+
         $.ajax({
             url: queryURL,
             method: 'GET'
@@ -139,5 +143,7 @@ $(document).ready(function () {
             console.log(results);
         }
     });
+
     
     
+
