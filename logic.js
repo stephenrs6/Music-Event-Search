@@ -14,17 +14,9 @@ var artists = [];
 var results = [];
 var filteredResults;
 
-<<<<<<< HEAD
-//Set Variables for the latitutde and longitude of the events (to be used in Google Maps API)
-//Setting the latitude variables
-var mapsLat; 
-//Setting the longitude variable
-var mapsLong;
-=======
 //geocoder variables
 var state;
 var geocoder;
->>>>>>> master
 
 //MUSICGRAPH API
 //Function Declaration for Searching MusicGraph
@@ -87,44 +79,16 @@ function searchBandsInTown(input) {
             }).done(function (response) {
 
                 //add the events to the results array 
-<<<<<<< HEAD
-                results.push(response);
-                
-=======
                 for (var a = 0; a < response.length; a++) {
                     if (response[a].venue.region === state) {
                         results.push(response[a]);
                     }
                 }
->>>>>>> master
             });
         }
     });
 }
 
-<<<<<<< HEAD
-
-//GOOGLE MAPS API 
-//API Key for Maps Access
-var APIKey = "AIzaSyDtjjfGkVF17NIWDDcDW_uexEjIqA17Am4";
-
-//Geoposition variable
-var pos;
-
-//HTML5 Geolocation Access
-if (navigator.geolocation) {
-
-    //GetCurrentPosition Function
-    navigator.geolocation.getCurrentPosition(function (position) {
-
-        //pull the geolocation
-        pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
-
-        console.log(pos);
-=======
 //Use browser geolocation and google reverse geocoding api to get user's state
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -152,7 +116,6 @@ function reverseGeoCode(lat, lng) {
         } else {
             alert('Geocoder failed due to: ' + status);
         }
->>>>>>> master
     });
 
     var map;
@@ -209,16 +172,6 @@ $('#search').keypress(function (e) {
 
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
-<<<<<<< HEAD
-
-        //Loop through each artist in the artists array
-        setTimeout(artists.forEach(function (i) {
-
-            //Find the events for the artists with the BandsInTown Search
-            searchBandsInTown(i);
-        }),5000);
-=======
->>>>>>> master
         console.log(results);
     }
 });
