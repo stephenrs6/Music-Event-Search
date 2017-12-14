@@ -76,3 +76,58 @@ a[href="badges.html"] {
     #searchBar {width: 100%;}   
     .brand-logo {margin-left: 0px;               
 }
+
+img {
+    height: 25%;
+}
+
+#footContent {
+    height: 75px;
+}
+
+#copy {
+    width: 100%;
+}
+
+/* media queries
+#smScreen {
+    display: none;
+}
+
+@media screen and (max-width: 750px) {
+    #smScreen{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    .carousel-item {
+        width: 50px;
+    }
+    #normal {
+        display: none;
+    }
+} */
+
+/* @media screen and (max-width:1050px){
+    .carousel .carousel-item {width: 400px;}
+    #searchBar {margin-top: 30px;}
+        
+}
+@media screen and (max-width:800px){
+    .carousel .carousel-item {width: 350px;}
+    #searchBar {margin-top: 20px;}
+    
+}
+@media screen and (max-width: 600px){
+    .carousel .carousel-item {width: 250px;}
+    #searchBar {margin-top: 20px;}
+    #searchBar {width: 100%;}
+    
+}
+@media screen and (max-width:460px){
+    .carousel .carousel-item {width: 200px;}
+    #searchBar {margin-top: 10px;}
+    #searchBar {width: 100%;}    
+    
+} */
+
