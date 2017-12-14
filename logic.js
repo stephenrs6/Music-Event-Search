@@ -44,7 +44,6 @@ function searchMusicGraph(input) {
             }
 
         });
-
     });
 }
 
@@ -77,7 +76,7 @@ function searchBandsInTown(input) {
                     }
                 }
             });
-        }
+        } console.log(response);
     });
 }
 
@@ -131,4 +130,3 @@ $('#search').keypress(function (e) {
         console.log(results);
     }
 });
-
