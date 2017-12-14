@@ -2,14 +2,16 @@
 
 $(document).ready(function () {
 
-    $('.carousel').carousel();
+     $('.collapsible').collapsible();
 
-    // $(".dropdown-button").dropdown("click", function () {
-    //     hover: false;
+     //Set up Materilaze navbar hover on document ready 
+    $(".dropdown-button").dropdown("click", function () {
+        hover: false;
+    });
 
+    $(".dropdown-button").dropdown("click", function () {
+        hover: false; 
+    })
 });
 
-//hide search icon when icon is clicked
-$(".labe-icon active").click(function () {
-    $("#searchIcon").addClass('hide');
-});
+    

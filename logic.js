@@ -1,14 +1,3 @@
-// Media query for carousel
-$('.carousel.carousel-slider').carousel({fullWidth: true});
-//Set up Materilaze navbar hover on document ready 
-$(document).ready(function () {
-
-    $(".dropdown-button").dropdown("click", function () {
-        hover: false;
-        
-    })
-});
-
 //variable to store user's initial search input 
 var artist;
 //array to store the list of searched artist and related artists(pulled from MusicGraph)

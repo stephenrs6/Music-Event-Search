@@ -18,6 +18,7 @@
   }
 .carousel .carousel-item {
     width: 500px;
+    
 }
 
 #searchBar {
@@ -40,6 +41,11 @@ img {
     height: 25%;
 }
 
+#footContent, #copy {
+    bottom: auto;
+    float: bottom;
+}
+
 #footContent {
     height: 75px;
 }
@@ -48,19 +54,23 @@ img {
     width: 100%;
 }
 
-/* media queries
-#smScreen {
+
+
+/* media queries */
+/* #smScreen {
     display: none;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 480px) {
     #smScreen{
         display: block;
         width: 100%;
         height: auto;
+        align-content: center;
     }
     .carousel-item {
         width: 50px;
+        align-content: center;
     }
     #normal {
         display: none;
