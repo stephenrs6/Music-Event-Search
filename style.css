@@ -3,7 +3,7 @@
     width: 100%;
 }
 .row {
-    height: 600px;
+    height: 300px;
 }
 .carousel {
     height: 800px;
@@ -14,9 +14,22 @@
     min-height: 700px;
     width: 100%;
     margin-top: -100px;
+    height: 0px;
   }
 .carousel .carousel-item {
     width: 500px;
 }
-    
 
+#searchBar {
+    margin-top: 10px;
+}
+
+.card {
+    margin-top: -200px;
+}
+    
+body {
+    height: 1000px;
+    background: black; /* For browsers that do not support gradients */
+    background: linear-gradient(rgb(80, 52, 52), black); /* Standard syntax (must be last) */
+}
