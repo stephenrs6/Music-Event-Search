@@ -4,11 +4,16 @@ var artist;
 var artists = [];
 //array to store the events object from BandsInTown API (only if artist has upcoming shows)
 var results = [];
-var filteredResults;
-var images = [];
+
+//images object to store artist images w/ events
+var images = {};
 //geocoder variables
 var state;
 var geocoder;
+
+var maps = [];
+
+
 
 
 //MUSICGRAPH API
@@ -22,7 +27,6 @@ function searchMusicGraph(input) {
         url: queryURL,
         method: 'GET'
     }).done(function (response) {
-
         //Get the string provided in the JSON 
         var artistId = response.data[0].id;
         //Search for the related artists
@@ -38,7 +42,7 @@ function searchMusicGraph(input) {
                 artists.push(response.data[i].name);
             }
 
-            for (var i = 0; i < artists.length; i++){
+            for (var i = 0; i < artists.length; i++) {
                 searchBandsInTown(artists[i]);
             }
 
@@ -61,6 +65,8 @@ function searchBandsInTown(input) {
     }).done(function (response) {
         //Check if there are upcoming shows, then run the event search if so 
         if (response.upcoming_event_count > 0) {
+            //push the images
+            images[input.toLowerCase()] = response.thumb_url;
             var queryURLevents = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
             //ajax call for event search
             $.ajax({
@@ -71,13 +77,11 @@ function searchBandsInTown(input) {
                 for (var a = 0; a < response.length; a++) {
                     if (response[a].venue.region === state) {
                         results.push(response[a]);
+
                     }
                 }
             });
         }
-        images.push(response.thumb_url);
-
-        
     });
 }
 
@@ -117,7 +121,7 @@ function reverseGeoCode(lat, lng) {
 $('#search').keypress(function (e) {
 
     //If the keypress is "enter"
-    if (e.which == 13) {
+    if (e.which == 13 && state) {
         //Pull the value and put it in the artist variable
         artist = $('#search').val().trim();
 
@@ -130,7 +134,13 @@ $('#search').keypress(function (e) {
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
         console.log(results);
-        console.log(images);
+        createCarouselItem(results);
     }
 });
 
+
+function createCarouselItem(input) {
+    for (i = 0; i < results.length; i++) {
+        var name = results[i].lineup[0].toLowerCase();
+    }
+}
