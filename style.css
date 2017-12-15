@@ -38,6 +38,14 @@ body {
 .nav-wrapper {
     background-color: rgb(73, 147, 165);
 }
+
+.page-footer {
+    background-color: transparent;
+    clear: both;
+    margin: 180px;
+    
+}
+
 .brand-logo {
     font-family: 'Stalinist One', cursive;
     margin-left: 20px;
@@ -90,6 +98,7 @@ img {
 #footContent {
     height: 75px;
 }
+
 
 #copy {
     width: 100%;
