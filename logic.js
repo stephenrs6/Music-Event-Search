@@ -5,7 +5,7 @@ var artists = [];
 //array to store the events object from BandsInTown API (only if artist has upcoming shows)
 var results = [];
 var filteredResults;
-
+var images = [];
 //geocoder variables
 var state;
 var geocoder;
@@ -25,7 +25,6 @@ function searchMusicGraph(input) {
 
         //Get the string provided in the JSON 
         var artistId = response.data[0].id;
-
         //Search for the related artists
         var artistQueryURL = "http://api.musicgraph.com/api/v2/artist/" + artistId + "/similar?api_key=c8303e90962e3a5ebd5a1f260a69b138&limit=10";
 
@@ -33,7 +32,6 @@ function searchMusicGraph(input) {
             url: artistQueryURL,
             method: 'GET'
         }).done(function (response) {
-
             //Run a for loop to push the results (related artists) to artists array 
 
             for (var i = 0; i < 5; i++) {
@@ -61,7 +59,6 @@ function searchBandsInTown(input) {
         url: queryURL,
         method: "GET"
     }).done(function (response) {
-
         //Check if there are upcoming shows, then run the event search if so 
         if (response.upcoming_event_count > 0) {
             var queryURLevents = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
@@ -70,7 +67,6 @@ function searchBandsInTown(input) {
                 url: queryURLevents,
                 method: "GET"
             }).done(function (response) {
-
                 //add the events to the results array 
                 for (var a = 0; a < response.length; a++) {
                     if (response[a].venue.region === state) {
@@ -79,6 +75,9 @@ function searchBandsInTown(input) {
                 }
             });
         }
+        images.push(response.thumb_url);
+
+        
     });
 }
 
@@ -131,6 +130,7 @@ $('#search').keypress(function (e) {
         //Runt the Music Graph search for related artists array
         searchMusicGraph(artist);
         console.log(results);
+        console.log(images);
     }
 });
 
