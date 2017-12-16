@@ -78,9 +78,9 @@ function searchBandsInTown(input) {
                 for (var a = 0; a < response.length; a++) {
                     if (response[a].venue.region === state) {
                         results.push(response[a]);
-                       
-
+                        carouselGenerator(response[a], images[input.toLowerCase()], response[a].venue.latitude, response[a].venue.longitude)
                     }
+                    
                 }
             });
         }
@@ -160,7 +160,7 @@ function initMap(latitude, longitude, mapInput) {
   }
 
 
-function carouselGenerator(event, imgs, eventlatitude, eventlongitude){
+function carouselGenerator(event, img, eventlatitude, eventlongitude){
     // DYNAMICALLY CREATING THE CAROUSEL
     // create loop for every result to create a new card for the carousel
     
@@ -182,7 +182,7 @@ function carouselGenerator(event, imgs, eventlatitude, eventlongitude){
         // create img and link to url 
         var photo = $("<img>");
         photo.addClass('activator');
-        photo.attr('src', imgs);
+        photo.attr('src', img);
         // John's img code
         // append <div class="card-image waves-effect waves-block">
         $(pic).append(photo);
@@ -225,12 +225,12 @@ function carouselGenerator(event, imgs, eventlatitude, eventlongitude){
         var closeSymbol = $("<i>close</i>");
         closeSymbol.addClass("material-icons right");
         cardTitleTwo.append(closeSymbol);
-        var mapview = $("<div>");
-        var mapid = 'map';
-        mapview.attr('id', mapid);
-        parseEventResults(event);
-        initMap(eventlatitude, eventlongitude, mapid);
-        cardTitleTwo.append(mapview);
+        // var mapview = $("<div>");
+        // var mapid = 'map';
+        // mapview.attr('id', mapid);
+        // parseEventResults(event);
+        // initMap(eventlatitude, eventlongitude, mapid);
+        // cardTitleTwo.append(mapview);
         reveal.append(cardTitleTwo);
         $(card).append(reveal);
         if($('.carousel').hasClass('initialized')){
