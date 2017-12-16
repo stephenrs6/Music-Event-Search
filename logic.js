@@ -39,7 +39,7 @@ function searchMusicGraph(input) {
         }).done(function (response) {
             //Run a for loop to push the results (related artists) to artists array 
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 10; i++) {
                 artists.push(response.data[i].name);
             }
 
