@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>knotify</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Sonsie+One|Stalinist+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
+
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+
+    <!-- dropdown list for filters -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li>
+            <a href="#!">A-Z</a>
+        </li>
+        <li>
+            <a href="#!">Nearest</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#!">three</a>
+        </li>
+    </ul>
+    <!-- nav bar with links -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Knotify</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="badges.html">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- search bar -->
+    <div class="container" id="searchBar">
+        <nav>
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input formnovalidate id="search" type="search" placeholder="Search...">
+                        <label for="search">
+                            <i class="material-icons" style="font-size: 50px; margin-top: 20px; margin-left: -10px;">search</i>
+                        </label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <!-- band content shown in cards -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="carousel">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <div class="footer-copyright" id="copy">
+            <a class="grey-text text-lighten-4" href="#!">© 2017 Copyright Knotify</a>
+        </div>
+    </footer>
+
+    <!-- carousel function -->
+    <script>$(document).ready(function () { $('.carousel').carousel(); });</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtjjfGkVF17NIWDDcDW_uexEjIqA17Am4"></script>
+    <script type="text/javascript" src="logic.js"></script>
+</body>
+
+</html>
