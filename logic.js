@@ -121,9 +121,11 @@ function reverseGeoCode(lat, lng) {
 //Pull the value from the search input field
 //On keypress "Enter"
 $('#search').keypress(function (e) {
+    
 
     //If the keypress is "enter"
     if (e.which == 13 && state) {
+        event.preventDefault();
         //Pull the value and put it in the artist variable
         artist = $('#search').val().trim();
 
