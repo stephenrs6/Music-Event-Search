@@ -4,7 +4,7 @@ var eventLong = [];
 var results = [{venue : {latitude: 32.748445, longitude: -117.130271}},{venue : {latitude: 32.5895282, longitude: -117.0066818}    
 }];
 
-var maps = ["#testmap"];
+var maps = ["#map1"];
 
 console.log(results);
 function parseEventResults (results) {
@@ -31,6 +31,6 @@ function initMap(latitude, longitude, mapInput) {
  parseEventResults(results);
  
  for (var i=0; i < eventLat.length; i++){
-     initMap(eventLat[i], eventLong[i], maps[i]);
+     initMap(eventLat[i], eventLong[i], maps);
  }
  
