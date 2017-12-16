@@ -162,7 +162,7 @@ function initMap(latitude, longitude, mapInput) {
   }
 
 
-function carouselGenerator(event, img, eventlatitude, eventlongitude){
+function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude){
     // DYNAMICALLY CREATING THE CAROUSEL
     // create loop for every result to create a new card for the carousel
     
@@ -198,7 +198,7 @@ function carouselGenerator(event, img, eventlatitude, eventlongitude){
         var cardTitle = $('<span>');
         cardTitle.addClass('card-title activator grey-text text-darken-4');
         //pull in name from bands in town
-        cardTitle.text(event.lineup[0]+ " Is Playing @ " + event.venue.name);
+        cardTitle.text(bandEvent.lineup[0]+ " Is Playing @ " + bandEvent.venue.name);
         var vert = $("<i>more_vert</i>");
         vert.addClass("material-icons right");
         // append i to span
@@ -213,7 +213,7 @@ function carouselGenerator(event, img, eventlatitude, eventlongitude){
         action.addClass("card-action");
         // add <a href="#">Bandwebsite</a>
         var website = $("<div>"); 
-        website.html("<a href='" + event.url + "'>BUY TICKETS</a>");
+        website.html("<a href='" + bandEvent.url + "'>BUY TICKETS</a>");
         action.append(website);
         // append to <div class="card sticky-action">
         $(card).append(action);
@@ -223,7 +223,7 @@ function carouselGenerator(event, img, eventlatitude, eventlongitude){
         reveal.addClass("card-action card-reveal");
         var cardTitleTwo = $("<span>");
         cardTitleTwo.addClass("card-title grey-text text-darken-4");
-        cardTitle.text(event.venue.name);
+        cardTitle.text(bandEvent.venue.name);
         var closeSymbol = $("<i>close</i>");
         closeSymbol.addClass("material-icons right");
         cardTitleTwo.append(closeSymbol);
