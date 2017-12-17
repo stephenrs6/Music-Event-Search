@@ -23,33 +23,51 @@ function searchMusicGraph(input) {
     //QueryURL using user search input as a parameter
     var queryURL = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=c8303e90962e3a5ebd5a1f260a69b138&prefix=" + input;
 
-    //ajax call using the user's input
+    //JSONP testing
     $.ajax({
         url: queryURL,
-        method: 'GET'
-    }).done(function (response) {
-        //Get the string provided in the JSON 
-        var artistId = response.data[0].id;
-        //Search for the related artists
-        var artistQueryURL = "http://api.musicgraph.com/api/v2/artist/" + artistId + "/similar?api_key=c8303e90962e3a5ebd5a1f260a69b138&limit=10";
+        dataType: 'jsonp', 
+        jsonpCallback: 'callback',
+        type: 'GET',
+        success:function(response){
+            // do stuff with json (in this case an array)
+            console.log(response);
+            alert("Success");
+        },
+        error:function(){
+            alert("Error");
+        }      
+   });
 
-        $.ajax({
-            url: artistQueryURL,
-            method: 'GET'
-        }).done(function (response) {
-            //Run a for loop to push the results (related artists) to artists array 
+    //Http musicgraph API call. Doesnt work on github pages
+     
+    //ajax call using the user's input
+    // $.ajax({
+    //     url: queryURL,
+    //     method: 'GET'
+    // }).done(function (response) {
+    //     //Get the string provided in the JSON 
+    //     var artistId = response.data[0].id;
+    //     //Search for the related artists
+    //     var artistQueryURL = "http://api.musicgraph.com/api/v2/artist/" + artistId + "/similar?api_key=c8303e90962e3a5ebd5a1f260a69b138&limit=10";
 
-            for (var i = 0; i < 10; i++) {
-                artists.push(response.data[i].name);
-            }
+    //     $.ajax({
+    //         url: artistQueryURL,
+    //         method: 'GET'
+    //     }).done(function (response) {
+    //         //Run a for loop to push the results (related artists) to artists array 
 
-            for (var i = 0; i < artists.length; i++) {
-                searchBandsInTown(artists[i]);
-            }
+    //         for (var i = 0; i < 10; i++) {
+    //             artists.push(response.data[i].name);
+    //         }
+
+    //         for (var i = 0; i < artists.length; i++) {
+    //             searchBandsInTown(artists[i]);
+    //         }
             
-        });
+    //     });
 
-    });
+    // });
 }
 
 //BANDSINTOWN API
