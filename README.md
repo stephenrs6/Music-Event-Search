@@ -1,2 +1,3 @@
 # Music-Event-Search
-project 1
+
+[Link to app](https://bharloe.github.io/Music-Event-Search/)
