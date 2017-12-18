@@ -230,7 +230,10 @@ function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude) {
   reveal.addClass("card-action card-reveal");
   var cardTitleTwo = $("<span>");
   cardTitleTwo.addClass("card-title grey-text text-darken-4");
-  cardTitle.text(bandEvent.venue.name);
+
+  //Line 235 currently isn't doing anything
+  cardTitleTwo.text(bandEvent.venue.name);
+  
   var closeSymbol = $("<i>close</i>");
   closeSymbol.addClass("material-icons right");
   cardTitleTwo.append(closeSymbol);
