@@ -204,8 +204,10 @@ function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude) {
   // add span to the div
   var cardTitle = $("<span>");
   cardTitle.addClass("card-title activator grey-text text-darken-4");
+  var formatDate = moment(bandEvent.datetime).format('LLLL');
+  console.log(formatDate);
   //pull in name from bands in town
-  cardTitle.text(bandEvent.lineup[0] + " Is Playing @ " + bandEvent.venue.name);
+  cardTitle.text(bandEvent.lineup[0] + ": Playing at " + bandEvent.venue.name +" On " + formatDate);
   var vert = $("<i>more_vert</i>");
   vert.addClass("material-icons right");
   // append i to span
