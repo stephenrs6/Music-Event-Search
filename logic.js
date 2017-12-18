@@ -7,11 +7,10 @@ var results = [];
 
 //images object to store artist images w/ events
 var images = {};
+
 //geocoder variables
 var state;
 var geocoder;
-var eventLat = [];
-var eventLong = [];
 
 //MUSICGRAPH API
 //Function Declaration for Searching MusicGraph
@@ -152,11 +151,6 @@ $("#search").keypress(function(e) {
   }
 });
 
-function parseEventResults(element) {
-  eventLat.push(element.venue.latitude);
-  eventLong.push(element.venue.longitude);
-}
-
 function initMap(latitude, longitude, mapInput) {
   var uluru = { lat: latitude, lng: longitude };
   var map = new google.maps.Map(document.querySelector(mapInput), {
@@ -204,10 +198,16 @@ function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude) {
   // add span to the div
   var cardTitle = $("<span>");
   cardTitle.addClass("card-title activator grey-text text-darken-4");
-  var formatDate = moment(bandEvent.datetime).format('LLLL');
+  var formatDate = moment(bandEvent.datetime).format("LLLL");
   console.log(formatDate);
   //pull in name from bands in town
-  cardTitle.text(bandEvent.lineup[0] + ": Playing at " + bandEvent.venue.name +" On " + formatDate);
+  cardTitle.text(
+    bandEvent.lineup[0] +
+      ": Playing at " +
+      bandEvent.venue.name +
+      " On " +
+      formatDate
+  );
   var vert = $("<i>more_vert</i>");
   vert.addClass("material-icons right");
   // append i to span
@@ -235,14 +235,13 @@ function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude) {
 
   //Line 235 currently isn't doing anything
   cardTitleTwo.text(bandEvent.venue.name);
-  
+
   var closeSymbol = $("<i>close</i>");
   closeSymbol.addClass("material-icons right");
   cardTitleTwo.append(closeSymbol);
   // var mapview = $("<div>");
   // var mapid = 'map';
   // mapview.attr('id', mapid);
-  // parseEventResults(event);
   // initMap(eventlatitude, eventlongitude, mapid);
   // cardTitleTwo.append(mapview);
   reveal.append(cardTitleTwo);
@@ -251,13 +250,4 @@ function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude) {
     $(".carousel").removeClass("initialized");
   }
   $(".carousel").carousel();
-}
-
-function createCarouselItem() {
-  console.log("test1");
-  for (var i = 0; i < results.length; i++) {
-    console.log("test2");
-    var name = results[i].lineup[0].toLowerCase();
-    carouselGenerator(results[i], images[name], eventLat[i], eventLong[i]);
-  }
 }
