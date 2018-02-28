@@ -117,7 +117,8 @@ function reverseGeoCode(lat, lng) {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results) {
           // place your marker coding
-          state = results[0].address_components[5].short_name;
+          state = 'CA';
+          // state = results[0].address_components[5].short_name;
           console.log(state);
         } else {
           alert("No results found");
@@ -240,7 +241,7 @@ function carouselGenerator(bandEvent, img, eventlatitude, eventlongitude) {
   // var mapview = $("<div>");
   // var mapid = 'map';
   // mapview.attr('id', mapid);
-  // parseEventResults(event);
+  // // parseEventResults(event);
   // initMap(eventlatitude, eventlongitude, mapid);
   // cardTitleTwo.append(mapview);
   reveal.append(cardTitleTwo);
