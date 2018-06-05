@@ -261,7 +261,7 @@ function createCarouselItem() {
     carouselGenerator(results[i], images[name], eventLat[i], eventLong[i]);
   }
 }
-=======
+
 //variable to store user's initial search input
 var artist;
 //array to store the list of searched artist and related artists(pulled from MusicGraph)
